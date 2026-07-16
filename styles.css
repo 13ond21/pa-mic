@@ -1,4 +1,4 @@
-/* UK Pay Calc — dark mint theme (matches app) */
+/* Bluetooth Mic / PA Mic — dark mint theme (matches app) */
 :root {
   --bg: #0a0c18;
   --surface: #111827;
@@ -7,12 +7,24 @@
   --muted: #9ca3af;
   --accent: #34d399;
   --accent-dim: #10b981;
+  --accent-soft: #6ee7b7;
   --border: #2d3748;
   --danger: #ef4444;
   --radius: 16px;
   --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --max: 960px;
+  --max: 1080px;
   --font: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.page-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 45% at 12% 0%, rgba(52, 211, 153, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 15%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    var(--bg);
 }
 
 *,
@@ -121,6 +133,30 @@ a:hover {
   color: var(--accent);
 }
 
+.nav-cta {
+  padding: 0.4rem 0.85rem !important;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg) !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+.nav-cta:hover { filter: brightness(1.06); }
+
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: var(--accent-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
 .hero {
   padding: 2rem 0 1rem;
   display: grid;
@@ -130,17 +166,17 @@ a:hover {
 
 @media (min-width: 800px) {
   .hero {
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.15fr 0.85fr;
     padding: 2.75rem 0 1.5rem;
   }
 }
 
 .hero h1 {
-  margin: 0 0 0.5rem;
-  font-size: clamp(1.85rem, 4vw, 2.5rem);
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.9rem, 4vw, 2.65rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
 }
 
 .hero .lede {
@@ -150,12 +186,199 @@ a:hover {
   max-width: 36em;
 }
 
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 1.5rem 0 0;
+  max-width: 28rem;
+}
+
+.stats div {
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+}
+
+.stats dt {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--accent-soft);
+}
+
+.stats dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* Device frames — real Samsung screenshots */
+.phone-frame {
+  position: relative;
+  margin: 0 auto;
+  background: #070a12;
+  border: 3px solid #2a3344;
+  border-radius: 36px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 28px 70px rgba(0, 0, 0, 0.55),
+    0 0 70px rgba(52, 211, 153, 0.08);
+  overflow: hidden;
+}
+
+.phone-frame-hero {
+  width: min(290px, 100%);
+  max-width: 290px;
+}
+
+.phone-frame-sm {
+  width: 100%;
+  max-width: 210px;
+  border-radius: 28px;
+  border-width: 2px;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88px;
+  height: 20px;
+  background: #070a12;
+  border-radius: 0 0 14px 14px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.phone-frame img,
+.phone-screen {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.proof-bar {
+  margin: 0.5rem 0 0.25rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(17, 24, 39, 0.55);
+}
+
+.proof-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.proof-inner .dot { opacity: 0.45; }
+
+.shot-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem 1rem;
+  justify-items: center;
+}
+
+.shot-card-phone {
+  margin: 0;
+  text-align: center;
+  max-width: 210px;
+}
+
+.shot-card-phone figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.shot-card-phone:hover .phone-frame {
+  border-color: rgba(52, 211, 153, 0.45);
+  transform: translateY(-3px);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+.pricing-card-featured {
+  background: linear-gradient(180deg, rgba(52, 211, 153, 0.12), var(--surface));
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.pricing-card .badge-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.pricing-card h3 { margin: 0; }
+
+.pricing-card .price {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin: 0.5rem 0 0.85rem;
+}
+
+.pricing-card .price span {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.pricing-card ul {
+  margin: 0 0 1.15rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.pricing-card li { margin-bottom: 0.4rem; }
+.pricing-card li.muted { font-size: 0.92rem; opacity: 0.9; }
+
+.package-note {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .hero-feature {
   width: 100%;
   border-radius: 18px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   background: var(--surface);
+}
+
+@media (max-width: 720px) {
+  .nav-cta { display: none; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
 }
 
 .badge-row {
